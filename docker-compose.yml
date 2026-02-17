@@ -1,0 +1,5 @@
+version: '3.8'
+services:
+  backend: {build: {context: ./backend}, container_name: stock_service_backend, volumes: ['stock_data:/app/stock_data'], restart: unless-stopped}
+  frontend: {build: {context: ./frontend}, container_name: stock_service_frontend, ports: ['8080:80'], depends_on: [backend], restart: unless-stopped}
+volumes: {stock_data: {}}
